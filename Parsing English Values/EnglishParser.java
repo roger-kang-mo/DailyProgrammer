@@ -14,7 +14,7 @@ public class EnglishParser {
 		values = new HashMap<String, Integer>();
 		magnitudes = new HashMap<String, Integer>();
 
-		setupPairs();
+		setupMap();
 	}
 
 	private int parsePart(String part){
@@ -32,10 +32,10 @@ public class EnglishParser {
 
 	}
 
-	//Four-thousand twenty seven
+	//Four-thousand twenty-seven
 	//Twenty-thousand two-hundred and forty-four
 
-	private void setupPairs(){
+	private void setupMap(){
 		values.put("one", 1);
 		values.put("two", 2);
 		values.put("three", 3);
