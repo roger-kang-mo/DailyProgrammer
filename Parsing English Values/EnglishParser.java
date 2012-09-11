@@ -1,20 +1,39 @@
 import java.io.*;
 import java.util.*;
 
+/*
+http://www.reddit.com/r/dailyprogrammer/comments/zfeb2/9062012_challenge_96_intermediate_parsing_english/
 
-// http://www.reddit.com/r/dailyprogrammer/comments/zfeb2/9062012_challenge_96_intermediate_parsing_english/
-
+One-Hundred and Ninety-Seven
+Seven-Hundred and Forty-Four Million
+Twenty-thousand two-hundred and forty-four
+Seven-Million 
+*/
 
 public class EnglishParser {
 
 	private Map<String, Integer> values;
 	private Map<String, Integer> magnitudes;
+	private int numValue = 0;
 
-	public EnglishParser(){
+	public EnglishParser(String inputString){
 		values = new HashMap<String, Integer>();
 		magnitudes = new HashMap<String, Integer>();
 
 		setupMap();
+
+		String[] englishString = inputString.replace(',', ' ').split(",");
+
+		for(String part : englishString){
+			numValue += parsePart(part);
+		}
+
+		System.out.println("Value parses out to: " + numValue);
+	}
+
+	public static void main(String[] args){
+		new EnglishParser("One-Hundred and Ninety-Seven");
+
 	}
 
 	private int parsePart(String part){
@@ -25,15 +44,11 @@ public class EnglishParser {
 		returnVal = values.get(pieces[0]);
 
 		if(pieces[1] != null){
-			returnVal *= magnitudes.get(pieces[1]);
+			returnVal = magnitudes.containsKey(pieces[1]) ? returnVal*magnitudes.get(pieces[1]) : returnVal + values.get(pieces[1]);
 		}
 		
 		return returnVal;	
-
 	}
-
-	//Four-thousand twenty-seven
-	//Twenty-thousand two-hundred and forty-four
 
 	private void setupMap(){
 		values.put("one", 1);
