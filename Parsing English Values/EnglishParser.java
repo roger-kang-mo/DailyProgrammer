@@ -16,23 +16,34 @@ public class EnglishParser {
 	private Map<String, Integer> magnitudes;
 	private int numValue = 0;
 
-	public EnglishParser(String inputString){
+	public EnglishParser(ArrayList<String> inputStrings){
 		values = new HashMap<String, Integer>();
 		magnitudes = new HashMap<String, Integer>();
 
 		setupMap();
 
-		String[] englishString = inputString.replace(',', ' ').split(",");
+		String[] englishString;
 
-		for(String part : englishString){
-			numValue += parsePart(part);
+		for(String inputString : inputStrings){
+			englishString = inputString.replace(' ', ',').toLowerCase().split(",");
+
+			for(String part : englishString){
+				if(!part.equals("and"))
+					numValue += parsePart(part);
+			}
+
+			System.out.println("Value parses out to: " + numValue);
+			numValue = 0;
 		}
-
-		System.out.println("Value parses out to: " + numValue);
 	}
 
 	public static void main(String[] args){
-		new EnglishParser("One-Hundred and Ninety-Seven");
+		ArrayList<String> inputs = new ArrayList<String>();
+		inputs.add("One-Hundred and Ninety-Seven");
+		inputs.add("Twenty-thousand two-hundred and forty-four");
+		inputs.add("Seven-Hundred and Forty-Four Million");
+
+		new EnglishParser(inputs);
 
 	}
 
@@ -41,9 +52,9 @@ public class EnglishParser {
 
 		String[] pieces = part.split("-");
 
-		returnVal = values.get(pieces[0]);
+		returnVal = magnitudes.containsKey(pieces[0]) ? numValue*magnitudes.get(pieces[0]) : returnVal + values.get(pieces[0]);
 
-		if(pieces[1] != null){
+		if(pieces.length > 1){
 			returnVal = magnitudes.containsKey(pieces[1]) ? returnVal*magnitudes.get(pieces[1]) : returnVal + values.get(pieces[1]);
 		}
 		
@@ -72,7 +83,7 @@ public class EnglishParser {
 		values.put("nineteen", 19);
 		values.put("twenty", 20);
 		values.put("thirty", 30);
-		values.put("fourty", 40);
+		values.put("forty", 40);
 		values.put("fifty", 50);
 		values.put("sixty", 60);
 		values.put("seventy", 70);
