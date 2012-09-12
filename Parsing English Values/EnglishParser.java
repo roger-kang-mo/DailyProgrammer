@@ -52,7 +52,14 @@ public class EnglishParser {
 
 		String[] pieces = part.split("-");
 
-		returnVal = magnitudes.containsKey(pieces[0]) ? numValue*magnitudes.get(pieces[0]) : returnVal + values.get(pieces[0]);
+		//returnVal = magnitudes.containsKey(pieces[0]) ? numValue*magnitudes.get(pieces[0]) : returnVal + values.get(pieces[0]);
+		if(magnitudes.containsKey(pieces[0]) && pieces.length == 1){
+			numValue = numValue * magnitudes.get(pieces[0]);
+		}
+		else{
+			returnVal += values.get(pieces[0]);
+		}
+
 
 		if(pieces.length > 1){
 			returnVal = magnitudes.containsKey(pieces[1]) ? returnVal*magnitudes.get(pieces[1]) : returnVal + values.get(pieces[1]);
