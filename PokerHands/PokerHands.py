@@ -1,10 +1,10 @@
 def change_faces(hand):
-	print hand
 	for card in hand:
 		card = "11"+card[1] if "J" in card[0] else card
 		card = "12"+card[1] if "Q" in card[0] else card
 		card = "13"+card[1] if "K" in card[0] else card
 		card = "1"+card[1] if "A" in card[0] else card
+	return hand
 
 def get_face_values(hand):
 	values = []
@@ -45,7 +45,6 @@ while endit == False:
 	print  get_suits(hand)
 	print  get_face_values(hand)
 	hand = change_faces(hand)
-	
 
 
 
