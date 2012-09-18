@@ -1,16 +1,20 @@
-def change_faces(hand):
-	for card in hand:
-		card = "11"+card[1] if "J" in card[0] else card
-		card = "12"+card[1] if "Q" in card[0] else card
-		card = "13"+card[1] if "K" in card[0] else card
-		card = "1"+card[1] if "A" in card[0] else card
-	return hand
-
 def get_face_values(hand):
 	values = []
-	
+	valuetoappend = 0
+
 	for card in hand:
-		values.append(card[0])
+		if 'J' in card[0]:
+			valuetoappend = 11
+		elif 'Q' in card[0]:
+			valuetoappend = 12
+		elif 'K' in card[0]:
+			valuetoappend = 13
+		elif 'A' in card[0]:
+			valuetoappend = 1
+		else:
+			valuetoappend = int(card[0])
+
+		values.append(valuetoappend)
 
 	return values
 
@@ -32,22 +36,30 @@ def is_flush(suits):
 			break
 
 	return isflush
+
+def is_straight(values):
+	values.sort()
+	retval = True
+
+	for i in range(1, len(values)):
+		if values[i] != values[i-1]+1:
+			retval = False
+			break
 	
+	return retval 
 
 
-#This is where we start!
+#This is where we start! 
 endit = False
 
-while endit == False:
+while endit == False: 
 
 	hand = raw_input("What is your hand?\n:>").split()
  
-	print  get_suits(hand)
-	print  get_face_values(hand)
-	hand = change_faces(hand)
-
-
-
+	print get_suits(hand)
+	print get_face_values(hand)
+	print "Is it a straight? %s" % is_straight(get_face_values(hand))
+	print "Is it a flush? %s" % is_flush(get_suits(hand))
 
 	wanttoquit = raw_input("Do you want to quit? 'Quit' or 'No'\n:>").lower()
 
