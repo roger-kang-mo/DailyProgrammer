@@ -37,12 +37,14 @@ class DigitalDisplay{
 
 		System.out.println(str.toString());
 
-		for(String line : convertToDigitalDisplay("49871"))
+		String numToConvert = "23478";
+		System.out.println("Converting " + numToConvert + " to digital display: ");
+		for(String line : convertToDigitalDisplay(numToConvert))
 			System.out.println(line);
 	}
 
 	private String[] convertToDigitalDisplay(String nums){
-		String[] digitalDisplay = new String[7];
+		String[] digitalDisplay = new String[]{"","","","","","",""};
 
 		for(int i = 0; i < nums.length(); i++){
 			digitalDisplay = addNum(digitalDisplay, ""+nums.charAt(i));
@@ -81,8 +83,9 @@ class DigitalDisplay{
 		String[] parts = dict.get(num).split(",");
 
 		for(int i = 0; i < display.length; i++){
-			display[i] = display[i] + " " + parts[i]; 
+			display[i] += " " + parts[i];
 		}
+
 
 		return display;
 	}
@@ -98,8 +101,8 @@ class DigitalDisplay{
 		dict.put("+--+,|  |,|  |,+--+,|  |,|  |,+--+", "8");
 		dict.put("+--+,|  |,|  |,+--+,   |,   |,+--+", "9");
 		dict.put("+--+,|  |,|  |,+  +,|  |,|  |,+--+", "0");
-		dict.put("1","+,|,|,+,|,|,+");
-		dict.put("2","+--+,   |,   |,+--+,|   ,|   ,+--+");
+		dict.put("1", "+,|,|,+,|,|,+");
+		dict.put("2", "+--+,   |,   |,+--+,|   ,|   ,+--+");
 		dict.put("3", "+--+,   |,   |,+--+,   |,   |,+--+");
 		dict.put("4", "+  +,|  |,|  |,+--+,   |,   |,   +");
 		dict.put("5", "+--+,|   ,|   ,+--+,   |,   |,+--+");
