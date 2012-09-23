@@ -36,6 +36,19 @@ class DigitalDisplay{
 			str.append(parseNumber(line));
 
 		System.out.println(str.toString());
+
+		for(String line : convertToDigitalDisplay("49871"))
+			System.out.println(line);
+	}
+
+	private String[] convertToDigitalDisplay(String nums){
+		String[] digitalDisplay = new String[7];
+
+		for(int i = 0; i < nums.length(); i++){
+			digitalDisplay = addNum(digitalDisplay, ""+nums.charAt(i));
+		}
+
+		return digitalDisplay;
 	}
 
 	private ArrayList<String> splitNums(String[] nums){
@@ -64,6 +77,16 @@ class DigitalDisplay{
 		return dict.get(num);	
 	}
 
+	private String[] addNum(String[] display, String num){
+		String[] parts = dict.get(num).split(",");
+
+		for(int i = 0; i < display.length; i++){
+			display[i] = display[i] + " " + parts[i]; 
+		}
+
+		return display;
+	}
+
 	private void setupDictionary(){
 		dict.put("+,|,|,+,|,|,+", "1");
 		dict.put("+--+,   |,   |,+--+,|   ,|   ,+--+", "2");
@@ -75,6 +98,16 @@ class DigitalDisplay{
 		dict.put("+--+,|  |,|  |,+--+,|  |,|  |,+--+", "8");
 		dict.put("+--+,|  |,|  |,+--+,   |,   |,+--+", "9");
 		dict.put("+--+,|  |,|  |,+  +,|  |,|  |,+--+", "0");
+		dict.put("1","+,|,|,+,|,|,+");
+		dict.put("2","+--+,   |,   |,+--+,|   ,|   ,+--+");
+		dict.put("3", "+--+,   |,   |,+--+,   |,   |,+--+");
+		dict.put("4", "+  +,|  |,|  |,+--+,   |,   |,   +");
+		dict.put("5", "+--+,|   ,|   ,+--+,   |,   |,+--+");
+		dict.put("6", "+--+,|   ,|   ,+--+,|  |,|  |,+--+");
+		dict.put("7", "+--+,   |,   |,   +,   |,   |,   +");
+		dict.put("8", "+--+,|  |,|  |,+--+,|  |,|  |,+--+");
+		dict.put("9", "+--+,|  |,|  |,+--+,   |,   |,+--+");
+		dict.put("0", "+--+,|  |,|  |,+  +,|  |,|  |,+--+");
 	}
 
 }
