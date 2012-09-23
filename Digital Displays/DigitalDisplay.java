@@ -44,7 +44,7 @@ class DigitalDisplay{
 		int last = 0;
 		StringBuilder str = new StringBuilder("");
 
-		for(int i = 0; i < nums.length-1; i++){
+		for(int i = 0; i < line.length()-1; i++){
 			if(line.charAt(i) == '+' && line.charAt(i+1) == ' '){
 				for(int j = 0; j < nums.length; j++){
 					str.append(nums[j].substring(last, i+1) + ',');
