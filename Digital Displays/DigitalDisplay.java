@@ -50,10 +50,8 @@ class DigitalDisplay{
 					str.append(nums[j].substring(last, i+1) + ',');
 				}
 
-				last = i+1;
-
-				System.out.println(str.toString().substring(0,str.length()-1).trim());
 				retVal.add(str.toString().substring(0,str.length()-1).trim());
+				last = i+2;
 				str.setLength(0);
 			}
 		}
