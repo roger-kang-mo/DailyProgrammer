@@ -1,0 +1,19 @@
+Rooms
+Kitchen
+Ballroom
+Conservatory
+Dining Room
+Living Room
+Billiard Room
+Lounge
+Hall
+Study
+NW-Hallway
+NE-Hallway
+SE-Hallway
+SW-Hallway
+
+exits
+NW-Hallway, Study
+NW-Hallway, NE-Hallway
+NE-Hallway, Lounge
