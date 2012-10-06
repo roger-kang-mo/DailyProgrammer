@@ -1,6 +1,8 @@
+package src;
+
 import java.util.ArrayList;
 
-class Person{
+public class Person{
 	
 	private int damage;
 	private String[] messages;

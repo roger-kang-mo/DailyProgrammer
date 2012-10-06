@@ -1,3 +1,5 @@
+package src;
+
 import java.io.*;
 import java.util.*;
 
@@ -5,7 +7,7 @@ import java.util.*;
 /**
 * ZORK?
 */
-class Adventure{
+public class Adventure{
 	
 	private HashMap<String, Room> rooms;
 

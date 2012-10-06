@@ -1,4 +1,6 @@
-class Item{
+package src;
+
+public class Item{
 	
 	private String description;
 	private boolean isClue;
